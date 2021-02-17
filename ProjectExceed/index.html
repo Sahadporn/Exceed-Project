@@ -73,6 +73,11 @@
             padding: 0 10px;
         }
 
+        #infolink {
+            text-decoration: none;
+            color: black;
+        }
+
         /* Remove extra left and right margins, due to padding */
         .row {
             width: 100%;
@@ -108,7 +113,7 @@
 
     <nav id="TopTap" class="navbar navbar-expand-lg navbar-light ">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.html">
                 <i class="fas fa-temperature-low ">TempForSure!</i>
                 <!-- <img src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" -->
                 <!-- class="d-inline-block align-top"> -->
@@ -121,7 +126,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#" disable>Register</a>
+                        <a class="nav-link active" aria-current="page" href="register.html">Register</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="#">About me</a>
@@ -140,13 +145,16 @@
 
     <div class="row">
         <div id="TextinColumn1" class="column">
+            <a href="info.html" id="infolink">
             <div class="card card-1">
-                <h3>หมู</h3>
+                <h3>หมู จอร์นสัน</h3>
                 <p>รหัสขนส่ง : Cargo001</p>
                 <p>ต้นทาง : USA</p>
-                <p>ต้นทาง : Thai</p>
+                <p>ปลายทาง : Thai</p>
+                <p>เวลาเริ่มต้น : 12:00 น.</p>
                 <h2 id="showTemp">19.0 °C</h2>
             </div>
+            </a>
         </div>
 
         <div id="TextinColumn3" class="column">
@@ -154,7 +162,8 @@
                 <h3>หมา</h3>
                 <p>รหัสขนส่ง :</p>
                 <p>ต้นทาง :</p>
-                <p>ต้นทาง :</p>
+                <p>ปลายทาง :</p>
+                <p>เวลาเริ่มต้น :</p>
                 <h2 id="showTemp">19.0 °C</h2>
             </div>
         </div>
@@ -164,7 +173,8 @@
                 <h3>กา</h3>
                 <p>รหัสขนส่ง :</p>
                 <p>ต้นทาง :</p>
-                <p>ต้นทาง :</p>
+                <p>ปลายทาง :</p>
+                <p>เวลาเริ่มต้น :</p>
                 <h2 id="showTemp">19.0 °C</h2>
             </div>
         </div>
@@ -174,7 +184,8 @@
                 <h3>ไก่</h3>
                 <p>รหัสขนส่ง :</p>
                 <p>ต้นทาง :</p>
-                <p>ต้นทาง :</p>
+                <p>ปลายทาง :</p>
+                <p>เวลาเริ่มต้น :</p>
                 <h2 id="showTemp">19.0 °C</h2>
             </div>
         </div>
@@ -185,8 +196,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
         crossorigin="anonymous"></script>
-
-
 
 
 </body>
