@@ -15,7 +15,8 @@ function scream(driver_name, cargo_id, time_start, source, destination) {
       source: source,
       destination: destination
     }),
-  }).then((response) => console.log(response));
+  }).then((response) => console.log(response))
+    .catch((error) => console.log("error", error));
 }
 
 form.addEventListener("submit", (event) => {
