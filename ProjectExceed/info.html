@@ -275,6 +275,15 @@
         // const url = 'http://158.108.182.5:20004/temp_input?car_id=1';
         const url = 'http://158.108.182.5:20004/temp_his?car_id=1';
 
+        function send(){
+            fetch(url,
+            {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ car_id: 1,status: 1 })
+            })
+        }
+
         fetch(url)
             .then(response => response.json())
             // .then(data => console.log(data))
