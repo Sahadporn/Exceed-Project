@@ -3,14 +3,15 @@ const app = document.getElementById("dri-register")
 ///const cache = [];
 
 
-function scream(driverName, cargoID, timeStart, source, destination) {
-  fetch("", {
+function scream(driver_name, cargo_id, time_start, source, destination) {
+  // Link here!!!
+  fetch("https://158.108.182.5:20004/driver/update", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      driverName: driverName,
-      cargoID: cargoID,
-      timeStart: timeStart,
+      driver_name: driver_name,
+      cargo_id: cargo_id,
+      time_start: time_start,
       source: source,
       destination: destination
     }),
@@ -19,15 +20,15 @@ function scream(driverName, cargoID, timeStart, source, destination) {
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-  driverName = form.elements["driverName"].value;
-  cargoID = form.elements["cargoID"].value;
-  timeStart = form.elements["timeStart"].value;
+  driver_name = form.elements["driver_name"].value;
+  cargo_id = form.elements["cargo_id"].value;
+  time_start = form.elements["time_start"].value;
   source = form.elements["source"].value;
   destination = form.elements["destination"].value;
-  scream(driverName, cargoID, timeStart, source, destination);
-  form.elements["driverName"].value = "";
-  form.elements["cargoID"].value = "";
-  form.elements["timeStart"].value = "";
+  scream(driver_name, cargo_id, time_start, source, destination);
+  form.elements["driver_name"].value = "";
+  form.elements["cargo_id"].value = "";
+  form.elements["time_start"].value = "";
   form.elements["source"].value = "";
   form.elements["destination"].value = "";
 });
