@@ -287,10 +287,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="register2.html" disable>Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <p>Version 4.1.3</p>
+                        <a class="nav-link active" aria-current="page" href="register.html" disable>Register</a>
                     </li>
                 </ul>
                 <!-- <form class="d-flex">
@@ -363,10 +360,10 @@
                             style="margin-top: 50px; ">หยุดขับ/เริ่มขับ</button>
                         <button type="submit" class="btn btn-warning btn-lg" id='click2'
                             style="margin-top: 50px; ">เสร็จสิ้น</button>
-                        <div class="mb-3" style="max-width: 500px;">
-                            <label for="current-location" class="form-label"></label>
-                            <input class="form-control" type="text" placeholder="กรอกสถานที่ปัจจุบัน">
-                        </div>
+                        <!-- <div class="mb-3" style="max-width: 500px;"> -->
+                        <!-- <label for="current-location" class="form-label"></label> -->
+                        <!-- <input class="form-control" type="text" placeholder="กรอกสถานที่ปัจจุบัน"> -->
+                        <!-- </div> -->
                     </form>
                 </div>
             </div>
@@ -383,28 +380,23 @@
 
     const url = 'http://158.108.182.5:20004/driver';
     // const url = 'http://158.108.182.5:20004/temp_his?car_id=1';
-    const url2 = 'http://158.108.182.5:20004/driver/update';
+    // const url2 = 'http://158.108.182.5:20004/driver/update';
 
-    function send() {
-        fetch(url2,
-            {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ car_id: 1, status: 1 })
-            })
-    }
+    // function send() {
+    //     fetch(url2,
+    //         {
+    //             method: "POST",
+    //             headers: { "Content-Type": "application/json" },
+    //             body: JSON.stringify({ car_id: 1, status: 1 })
+    //         })
+    // }
 
     fetch(url)
         .then(response => response.json())
         // .then(data => console.log(data.result[0].temp_his))
-        // .then(function (data) {
-        //     var myDate = data.temp_his[0].time;
-        //     // var month = myDate.prototype.getMonth();
-        //     var d = new Date().getSeconds();
-        //     console.log(d);
-        // })
         .then(function (data) {
             appendTemp(data)
+            // newTemp()
         })
         .catch((error) => {
             console.log('Error :', error);
@@ -415,6 +407,11 @@
         return item.temp;
     }
 
+    function newTemp() {
+        fetch(url)
+            .then(res => res.json())
+            .then(function (data) { });
+    }
 
     function appendTemp(data) {
         let arrayOfTemp = data.result[0].temp_his.map(getTemp);
@@ -430,7 +427,7 @@
         var countError = 0;
         var cnt = 0;
         var i = 1;
-      
+
 
         var layout = {
             title: 'Graph show temperature and time',
@@ -449,65 +446,72 @@
         }], layout);
 
 
-        console.log(data.result[0].temp);
-        if (data.result[0].status == 1) {
+        // console.log(data.result[0].temp);
+
+        if (data.result[0].status != 2) {
             setInterval(function () {
 
-                // for DataBase can use realtime
-                // var tmpTemp = data.temp_his[arrayOfTemp.length];
-                var tmpTemp = data.result[0].temp;
-                var round = arrayOfTemp.length;
+                fetch('http://158.108.182.5:20004/driver')
+                    .then(res => res.json())
+                    .then(function (data) {
+                        // for DataBase can use realtime
+                        // var tmpTemp = data.temp_his[arrayOfTemp.length];
+                        console.log("current: " + data.result[0].temp);
 
-                arrayOfTemp.push(tmpTemp);
-                arrayOfTime.push(round);
+                        var round = arrayOfTemp.length;
+                        var tmpTemp = data.result[0].temp;
+                        console.log("graphcurrent: " + data.result[0].temp);
 
-                round++;
+                        arrayOfTemp.push(tmpTemp);
+                        arrayOfTime.push(round);
 
-                Plotly.newPlot('chart', [{
-                    x: arrayOfTime,
-                    y: arrayOfTemp,
-                    type: 'line+markers'
-                }], layout);
+                        round++;
 
-                cnt++;
+                        Plotly.newPlot('chart', [{
+                            x: arrayOfTime,
+                            y: arrayOfTemp,
+                            type: 'line+markers'
+                        }], layout);
 
-                // var showTemp = document.getElementById('showTemp');
-                // showTemp.innerHTML = tmpTemp + " °C";
+                        cnt++;
+
+                        // var showTemp = document.getElementById('showTemp');
+                        // showTemp.innerHTML = tmpTemp + " °C";
 
 
-                if (cnt > 500) {
-                    Plotly.relayout('chart', {
-                        xaxis: {
-                            range: [cnt - 500, cnt]
+                        if (cnt > 500) {
+                            Plotly.relayout('chart', {
+                                xaxis: {
+                                    range: [cnt - 500, cnt]
+                                }
+                            });
                         }
+
+                        if (tmpTemp > 35) {
+                            countError++;
+                            console.log(countError);
+                            // var countTime = document.getElementById('countTime');
+                            // countTime.innerHTML = countError;
+
+                        } else {
+                            countError = 0;
+                            // var countTime = document.getElementById('countTime');
+                            // countTime.innerHTML = countError;
+
+                        }
+                        if (countError == 10) {
+                            // var showError = document.getElementById('showError').innerHTML = "ผิดปกติ";
+                            // document.getElementById('showTemp').style.backgroundColor = "red";
+
+                        }
+
+                        i++;
                     });
-                }
-
-                if (tmpTemp > 35) {
-                    countError++;
-                    console.log(countError);
-                    // var countTime = document.getElementById('countTime');
-                    // countTime.innerHTML = countError;
-
-                } else {
-                    countError = 0;
-                    // var countTime = document.getElementById('countTime');
-                    // countTime.innerHTML = countError;
-
-                }
-                if (countError == 10) {
-                    // var showError = document.getElementById('showError').innerHTML = "ผิดปกติ";
-                    // document.getElementById('showTemp').style.backgroundColor = "red";
-
-                }
-
-                i++;
-
             }, 1000);
         }
     }
 
-    const another_url = "http://158.108.182.5:20007/driver";
+    const another_url = "http://158.108.182.5:20004/driver";
     fetch(another_url)
         .then((response) => response.json())
         .then((data) => loadData(data))
@@ -543,17 +547,30 @@
         source.innerHTML = data.result[0]["source"];
         des.innerHTML = data.result[0]["destination"];
         time.innerHTML = data.result[0]["time"].substring(17, 22);
-        if (data.result[0]["status"] == 0) {
-            status.innerHTML = "หยุดพัก";
-        } else if (data.result[0]["status"] == 1) {
-            status.innerHTML = "กำลังขนส่ง";
-        } else {
-            status.innerHTML = "ขนส่งเสร็จสิ้น";
-        }
-        contain.appendChild(div);
+
+        fetch('http://158.108.182.5:20004/alert?car_id=1')
+            .then(res => res.json())
+            // .then(alert => console.log(alert))
+            .then(function () {
+                if (alert.alert == 0) {
+                    if (data.result[0]["status"] == 0) {
+                        status.innerHTML = "หยุดพัก";
+                    } else if (data.result[0]["status"] == 1) {
+                        status.innerHTML = "กำลังขนส่ง";
+                    } else {
+                        status.innerHTML = "ขนส่งเสร็จสิ้น";
+                    }
+                } else {
+                    status.innerHTML = "การขนส่งล้มเหลว";
+                }
+            });
+
+        // contain.appendChild(div);
     }
 
 </script>
+
+<script src="info.js"></script>
 
 </body>
 
