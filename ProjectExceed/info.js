@@ -35,7 +35,7 @@ function send2() {
     // console.log("Update status conplete!!!");
 }
 
-let button2 = document.getElementById("click1");
+let button2 = document.getElementById("click2");
 
 button2.addEventListener("click", (event) => {
     event.preventDefault();
