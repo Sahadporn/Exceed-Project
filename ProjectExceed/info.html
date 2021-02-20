@@ -249,7 +249,7 @@
                 </div>
                 <!-- <div class="column">
                     <form id="press">
-                        <button type="submit" class="btn btn-warning btn-lg"
+                        <button type="submit" class="btn btn-warning btn-lg" onclick=send()
                             style="margin-top: 50px;">หยุดขับ/เริ่มขับ</button>
                         <div class="mb-3" style="max-width: 500px;">
                             <label for="current-location" class="form-label"></label>
@@ -274,14 +274,14 @@
 
         // const url = 'http://158.108.182.5:20004/temp_input?car_id=1';
         const url = 'http://158.108.182.5:20004/temp_his?car_id=1';
-        const url2 = 'http://158.108.182.5:20004/driver/update';
+        const url2 = 'http://158.108.182.5:20004/driver_update';
 
         function send(){
             fetch(url2,
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ car_id: 1,status: 1 })
+                body: JSON.stringify({ car_id: "1",status: 1 })
             })
         }
 
