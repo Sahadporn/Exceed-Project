@@ -1,259 +1,484 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
 
     <title>trialProjectExceed2021</title>
 
     <style>
-        body {
-            background-color: #1e90ff;
-            width: 100%;
-            /* margin-top: 2%; */
-        }
+      body {
+        background-color: #1e90ff;
+        width: 100%;
+        /* margin-top: 2%; */
+      }
 
-        #TopTap {
-            background-color: #fcc900;
-        }
+      #TopTap {
+        background-color: #fcc900;
+      }
 
-        .card {
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-            margin: 30px;
-            padding-left: 30px;
-            padding-top: 20px;
-            padding-bottom: 20px;
-            text-align: left;
-            background-color: white;
-        }
+      .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        margin: 30px;
+        padding-left: 30px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        text-align: left;
+        background-color: white;
+      }
 
-        .card-1 {
-            background-image: url(https://ionicframework.com/img/getting-started/ionic-native-card.png);
-            background-repeat: no-repeat;
-            background-position: right;
-            background-size: 80px;
-        }
+      .card-1 {
+        background-image: url(https://ionicframework.com/img/getting-started/ionic-native-card.png);
+        background-repeat: no-repeat;
+        background-position: right;
+        background-size: 80px;
+      }
 
-        .card-2 {
-            background-image: url(https://ionicframework.com/img/getting-started/components-card.png);
-            background-repeat: no-repeat;
-            background-position: right;
-            background-size: 80px;
-        }
+      .card-2 {
+        background-image: url(https://ionicframework.com/img/getting-started/components-card.png);
+        background-repeat: no-repeat;
+        background-position: right;
+        background-size: 80px;
+      }
 
-        .card-3 {
-            background-image: url(https://ionicframework.com/img/getting-started/theming-card.png);
-            background-repeat: no-repeat;
-            background-position: right;
-            background-size: 80px;
-        }
+      .card-3 {
+        background-image: url(https://ionicframework.com/img/getting-started/theming-card.png);
+        background-repeat: no-repeat;
+        background-position: right;
+        background-size: 80px;
+      }
 
-        .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12),
-                0 4px 8px rgba(0, 0, 0, 0.06);
-        }
+      .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12),
+          0 4px 8px rgba(0, 0, 0, 0.06);
+      }
 
+      .column {
+        float: left;
+        width: 33%;
+        padding: 0 10px;
+      }
+
+      #infolink {
+        text-decoration: none;
+        color: black;
+      }
+
+      /* Remove extra left and right margins, due to padding */
+      .row {
+        width: 100%;
+      }
+
+      /* Clear floats after the columns */
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+
+      /* Responsive columns */
+      @media screen and (max-width: 600px) {
         .column {
-            float: left;
-            width: 33%;
-            padding: 0 10px;
+          width: 100%;
+          display: block;
+          margin-bottom: 20px;
         }
+      }
 
-        #infolink {
-            text-decoration: none;
-            color: black;
-        }
+      #showTemp {
+        text-align: center;
+      }
 
-        /* Remove extra left and right margins, due to padding */
-        .row {
-            width: 100%;
-        }
+      #showTemp:hover {
+        color: teal;
+      }
 
-        /* Clear floats after the columns */
-        .row:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
+      #dri-name {
+        margin-bottom: 10%;
+      }
 
-        /* Responsive columns */
-        @media screen and (max-width: 600px) {
-            .column {
-                width: 100%;
-                display: block;
-                margin-bottom: 20px;
-            }
-        }
-
-        #showTemp:hover {
-            color: teal;
-        }
+      #font {
+        font-size: large;
+      }
     </style>
 
-    <script src="https://kit.fontawesome.com/def773e089.js" crossorigin="anonymous"></script>
-</head>
+    <script
+      src="https://kit.fontawesome.com/def773e089.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-<body>
+  <body>
     <nav id="TopTap" class="navbar navbar-expand-lg navbar-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">
-                <i class="fas fa-temperature-low">TempForSure!</i>
-                <!-- <img src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" -->
-                <!-- class="d-inline-block align-top"> -->
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+          <i class="fas fa-temperature-low">TempForSure!</i>
+          <!-- <img src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" -->
+          <!-- class="d-inline-block align-top"> -->
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="register.html"
+                >Register</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#">About me</a>
+            </li>
+            <li class="nav-item">
+              <p>Version 2.0.1</p>
+            </li>
+          </ul>
+          <!-- <form class="d-flex"> -->
+          <div class="d-flex">
+            <input
+              class="form-control me-2"
+              type="search"
+              id="input-id"
+              placeholder="Search CargoID"
+              aria-label="Search"
+            />
+            <button
+              onclick="search()"
+              class="btn btn-outline-success"
+              id="find-cargo"
+              type="button"
+            >
+              Search
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="register.html">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">About me</a>
-                    </li>
-                    <li class="nav-item">
-                        <p>Version 2.0.1</p>
-                    </li>
-                </ul>
-                <!-- <form class="d-flex"> -->
-                <div class="d-flex">
-                    <input class="form-control me-2" type="search" id="input-id" placeholder="Search CargoID"
-                        aria-label="Search" />
-                    <button onclick="search()" class="btn btn-outline-success" id="find-cargo" type="button">
-                        Search
-                    </button>
-                </div>
-                <!-- </form> -->
-            </div>
+          </div>
+          <!-- </form> -->
         </div>
+      </div>
     </nav>
 
     <div class="row">
-        <div id="TextinColumn1" class="column">
-            <a href="info.html" id="infolink">
-                <div class="card card-1">
-                    <h3>หมู จอร์นสัน</h3>
-                    <h6>รหัสขนส่ง :</h6>
-                    <h5>1</h5>
-                    <p>ต้นทาง : USA</p>
-                    <p>ปลายทาง : Thai</p>
-                    <p>เวลาเริ่มต้น :<p id="time"></p></p>
-                    <h2 id="showTemp">19.0 °C</h2>
+      <div id="TextinColumn1" class="column">
+        <a href="info.html" id="infolink">
+          <div class="card card-1">
+            <h3 id="dri-name"></h3>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="col-md-6">
+                    <p id="font">รหัสขนส่ง :</p>
+                  </div>
+                  <div class="col-md-6">
+                    <h5 id="id"></h5>
+                  </div>
                 </div>
-            </a>
-        </div>
-
-        <div id="TextinColumn2" class="column">
-            <div class="card card-2">
-                <h3>หมา</h3>
-                <h6>รหัสขนส่ง :</h6>
-                <h5>2</h5>
-                <p>ต้นทาง :</p>
-                <p>ปลายทาง :</p>
-                <p>เวลาเริ่มต้น :</p>
-                <h2 id="showTemp">19.0 °C</h2>
+                <div class="row">
+                  <div class="col-md-6">
+                    <p id="font">ต้นทาง :</p>
+                  </div>
+                  <div class="col-md-6">
+                    <h6 id="source"></h6>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <p id="font">ปลายทาง :</p>
+                  </div>
+                  <div class="col-md-6">
+                    <h6 id="des"></h6>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <p id="font">เวลาเริ่มต้น :</p>
+                  </div>
+                  <div class="col-md-6">
+                    <h6 id="time"></h6>
+                  </div>
+                </div>
+              </div>
+              <div class="row" id="showTemp">
+                <div class="row">
+                  <h1 id="curr-temp"></h1>
+                </div>
+                <div class="row">
+                  <h5>Celsius</h5>
+                </div>
+              </div>
             </div>
-        </div>
+          </div>
+        </a>
+      </div>
 
-        <div id="TextinColumn3" class="column">
-            <div class="card card-3">
-                <h3>กา</h3>
-                <h6>รหัสขนส่ง :</h6>
-                <h5>3</h5>
-                <p>ต้นทาง :</p>
-                <p>ปลายทาง :</p>
-                <p>เวลาเริ่มต้น :</p>
-                <h2 id="showTemp">19.0 °C</h2>
+      <div id="TextinColumn2" class="column">
+        <div class="card card-2">
+          <h3>สมชาย ลายคิตตี้</h3>
+          <br />
+          <div class="row">
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-6">
+                  <p id="font">รหัสขนส่ง :</p>
+                </div>
+                <div class="col-md-6">
+                  <h5>2</h5>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <p id="font">ต้นทาง :</p>
+                </div>
+                <div class="col-md-6">
+                  <h6>China</h6>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <p id="font">ปลายทาง :</p>
+                </div>
+                <div class="col-md-6">
+                  <h6>Germany</h6>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <p id="font">เวลาเริ่มต้น :</p>
+                </div>
+                <div class="col-md-6">
+                  <h6>15:32</h6>
+                </div>
+              </div>
             </div>
+            <div class="row" id="showTemp">
+              <div class="row">
+                <h1>-9</h1>
+              </div>
+              <div class="row">
+                <h5>Celsius</h5>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
 
-        <div id="TextinColumn4" class="column">
-            <div class="card card-1">
-                <h3>ไก่</h3>
-                <h6>รหัสขนส่ง :</h6>
-                <h5>4</h5>
-                <p>ต้นทาง :</p>
-                <p>ปลายทาง :</p>
-                <p>เวลาเริ่มต้น :</p>
-                <h2 id="showTemp">19.0 °C</h2>
+      <div id="TextinColumn3" class="column">
+        <div class="card card-3">
+          <h3>สายสมร นอนหงาย</h3>
+          <br />
+          <div class="row">
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-6">
+                  <p id="font">รหัสขนส่ง :</p>
+                </div>
+                <div class="col-md-6">
+                  <h5>3</h5>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <p id="font">ต้นทาง :</p>
+                </div>
+                <div class="col-md-6">
+                  <h6>Lamlukka</h6>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <p id="font">ปลายทาง :</p>
+                </div>
+                <div class="col-md-6">
+                  <h6>Saimai</h6>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <p id="font">เวลาเริ่มต้น :</p>
+                </div>
+                <div class="col-md-6">
+                  <h6>12:14</h6>
+                </div>
+              </div>
             </div>
+            <div class="row" id="showTemp">
+              <div class="row">
+                <h1>32</h1>
+              </div>
+              <div class="row">
+                <h5>Celsius</h5>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <div id="TextinColumn4" class="column">
+        <div class="card card-1">
+          <h3>สมศักดิ์ รักชาติไทย</h3>
+          <br />
+          <div class="row">
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-6">
+                  <p id="font">รหัสขนส่ง :</p>
+                </div>
+                <div class="col-md-6">
+                  <h5>4</h5>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <p id="font">ต้นทาง :</p>
+                </div>
+                <div class="col-md-6">
+                  <h6>Jupiter</h6>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <p id="font">ปลายทาง :</p>
+                </div>
+                <div class="col-md-6">
+                  <h6>Mercury</h6>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <p id="font">เวลาเริ่มต้น :</p>
+                </div>
+                <div class="col-md-6">
+                  <h6>01:54</h6>
+                </div>
+              </div>
+            </div>
+            <div class="row" id="showTemp">
+              <div class="row">
+                <h1>-320</h1>
+              </div>
+              <div class="row">
+                <h5>Celsius</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-        crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
 
     <script>
-        const input = document.getElementById("find-cargo");
-        const typing = document.getElementById("input-id");
-        const list1 = document.getElementById("TextinColumn1");
-        const list2 = document.getElementById("TextinColumn2");
-        const list3 = document.getElementById("TextinColumn3");
-        const list4 = document.getElementById("TextinColumn4");
+      const input = document.getElementById("find-cargo");
+      const typing = document.getElementById("input-id");
+      const list1 = document.getElementById("TextinColumn1");
+      const list2 = document.getElementById("TextinColumn2");
+      const list3 = document.getElementById("TextinColumn3");
+      const list4 = document.getElementById("TextinColumn4");
 
-        function search() {
-            switch (typing.value) {
-                case "1":
-                    list1.style.display = "block";
-                    list2.style.display = "none";
-                    list3.style.display = "none";
-                    list4.style.display = "none";
-                    break;
-                case "2":
-                    list1.style.display = "none";
-                    list2.style.display = "block";
-                    list3.style.display = "none";
-                    list4.style.display = "none";
-                    break;
-                case "3":
-                    list1.style.display = "none";
-                    list2.style.display = "none";
-                    list3.style.display = "block";
-                    list4.style.display = "none";
-                    break;
-                case "4":
-                    list1.style.display = "none";
-                    list2.style.display = "none";
-                    list3.style.display = "none";
-                    list4.style.display = "block";
-                    break;
-            }
+      function search() {
+        // console.log(id);
+        // var c = document.get
+        // for (var i = 0; i < 4; i++) {
+        //   const id = document.getElementById("id");
+        //   // console.log(id[0]);
+        //   if (id.innerHTML == typing.value) {
+        //     for (var j = 0; j < 4; j++) {
+        //       const list = document.getElementById("TextinColumn1");
+        //       if (j == i) {
+        //         list.style.display = "block";
+        //       } else {
+        //         list.style.display = "none";
+        //       }
+        //     }
+        //   }
+        // }
+        const id = document.getElementById("id");
+        console.log(id.innerHTML);
+        switch (typing.value) {
+          case id.innerHTML:
+            list1.style.display = "block";
+            list2.style.display = "none";
+            list3.style.display = "none";
+            list4.style.display = "none";
+            break;
+          case "2":
+            list1.style.display = "none";
+            list2.style.display = "block";
+            list3.style.display = "none";
+            list4.style.display = "none";
+            break;
+          case "3":
+            list1.style.display = "none";
+            list2.style.display = "none";
+            list3.style.display = "block";
+            list4.style.display = "none";
+            break;
+          case "4":
+            list1.style.display = "none";
+            list2.style.display = "none";
+            list3.style.display = "none";
+            list4.style.display = "block";
+            break;
         }
-        function getData(car) {
-            var status = car.status;
-            var temp = car.temp;
-            var time = car.time;
+      }
 
-            // use me
-            document.getElementById("temp").innerHTML = time;
-        }
+      const url = "http://158.108.182.5:20007/driver";
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => loadData(data))
+        .catch((err) => console.log(err));
 
-        function loadData() {
-            var url = "http://158.108.182.5:20007/driver?car_id=1";
-            fetch(url, {
-                method: "GET",
-                headers: { "Content-Type": "application/json" },
-            })
-                .then((response) => response.json())
-                .then((datas) =>
-                    datas.result.forEach((data) => {
-                        getData(data);
-                    })
-                );
-        }
-        loadData();
+      var intervalId = window.setInterval(function () {
+        fetch(url)
+          .then((response) => response.json())
+          .then((data) => loadTemp(data))
+          .catch((err) => console.log(err));
+      }, 1000);
+
+      function loadTemp(data) {
+        var contain = document.getElementById("curr-temp");
+        // var div = document.createElement("h1");
+        contain.innerHTML = data.result[0]["temp"];
+      }
+
+      function loadData(data) {
+        var name = document.getElementById("dri-name");
+        var id = document.getElementById("id");
+        var source = document.getElementById("source");
+        var des = document.getElementById("des");
+        var time = document.getElementById("time");
+        //            console.log(data.result[0]["temp"]);
+        // var header = document.createComment
+        name.innerHTML = data.result[0]["driver_name"];
+        id.innerHTML = data.result[0]["car_id"];
+        source.innerHTML = data.result[0]["source"];
+        des.innerHTML = data.result[0]["destination"];
+        time.innerHTML = data.result[0]["time"].substring(17, 22);
+      }
+      // loadData();
     </script>
-</body>
-
+  </body>
 </html>

@@ -137,12 +137,13 @@
     }
 
     #showTemp {
-      background-color: rgb(155, 245, 104);
+      background-image: linear-gradient(to left, rgba(253, 219, 105, 0.959), white);
       border-width: 1;
       border-radius: 1em;
       padding: 10% 0 10% 0;
       font-size: 50px;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
 
     #press {
@@ -247,20 +248,6 @@
         color: #de8a00;
       }
 
-      #tempcontain {
-        margin-left: 10%;
-        margin-top: 5%;
-        text-align: center;
-      }
-
-      #showTemp {
-        background-color: rgb(135, 238, 76);
-        border-width: 1;
-        border-radius: 2em;
-        padding: 10% 0 10% 0;
-        font-size: 50px;
-      }
-
       #press {
         margin-bottom: 10%;
       }
@@ -319,19 +306,26 @@
   </nav>
   <div class="container">
     <div class="col-md-6" style="display: flex;">
-      <div class="card" style="min-width: 400px;">
+      <div class="card" style="min-width: 300px;">
         <div class="title">
           รหัสขนส่ง
           <br>
           <br>
-          Cargo001
+          <h2 id="id"></h2>
         </div>
         <div class="circle"></div>
         <div class="content">
-          <h2 style="font-weight: bold;">หมู จอร์นสัน</h2>
-          <h3>ต้นทาง : USA</h3>
-          <h3>ปลายทาง : Thai</h3>
-          <h3>เวลาเริ่มต้น : 12:00 น.</h3>
+          <h2 id="dri-name"></h2>
+          <hr>
+          <h4>ต้นทาง</h4>
+          <h3 id="source"></h3>
+          <hr style="width: 70%; margin: auto auto 5% auto; border-top: 3px dashed rgb(243, 150, 44);">
+          <h4>ปลายทาง</h4>
+          <h3 id="des"></h3>
+          <hr style="width: 70%; margin: auto auto 5% auto; border-top: 3px dashed rgb(243, 150, 44);">
+          <h4>เวลาเริ่มต้น</h4>
+          <h3 id="time"></h3>
+          <hr style="width: 70%; margin: auto auto 5% auto; border-top: 3px dashed rgb(243, 150, 44);">
           <div class="icon">
             <i class="fas fa-truck"></i>
           </div>
@@ -342,7 +336,19 @@
       <div class="row" id="tempcontain">
         <div class="column" style="margin-bottom: 2%;">
           <h1 id="showTemp">
-            <i class="fas fa-thermometer-half"></i> 19.0 °C
+            <div class="row">
+              <div class="col">
+                <div class="row">
+                  <h1 id="curr-temp"></h1>
+                </div>
+                <div class="row">
+                  <h5>Celsius</h5>
+                </div>
+              </div>
+              <div class="col-md-6" style="float: right; text-align: right; padding-right: 15%;">
+                <i class="fas fa-thermometer-half" style="font-size: 70px; color: #e34f26;"></i>
+              </div>
+            </div>
           </h1>
         </div>
 
@@ -564,6 +570,43 @@
     }, 1000);
   }
 
+  const another_url = "http://158.108.182.5:20007/driver";
+  fetch(another_url)
+    .then((response) => response.json())
+    .then((data) => loadData(data))
+    .catch((err) => console.log(err));
+
+  var intervalId = window.setInterval(function () {
+        fetch(another_url)
+          .then((response) => response.json())
+          .then((data) => loadTemp(data))
+          .catch((err) => console.log(err));
+      }, 1000);
+
+  function loadTemp(data) {
+    var contain = document.getElementById("curr-temp");
+    // var div = document.createElement("h1");
+    contain.innerHTML = data.result[0]["temp"];
+  }
+
+  function loadData(data) {
+    // var contain = document.getElementById("curr-temp");
+    var name = document.getElementById("dri-name");
+    var id = document.getElementById("id");
+    var source = document.getElementById("source");
+    var des = document.getElementById("des");
+    var time = document.getElementById("time");
+    //            console.log(data.result[0]["temp"]);
+    // var div = document.createElement("h1");
+    // var header = document.createComment
+    // contain.innerHTML = data.result[0]["temp"];
+    name.innerHTML = data.result[0]["driver_name"];
+    id.innerHTML = data.result[0]["car_id"];
+    source.innerHTML = data.result[0]["source"];
+    des.innerHTML = data.result[0]["destination"];
+    time.innerHTML = data.result[0]["time"].substring(17, 22);
+    // contain.appendChild(div);
+  }
 
 </script>
 
