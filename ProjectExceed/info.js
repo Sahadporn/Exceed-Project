@@ -1,11 +1,9 @@
-const url = 'http://158.108.182.5:20004/temp_his?car_id=1';
-const url2 = 'http://158.108.182.5:20004/driver_update';
-
-
+// const url = 'http://158.108.182.5:20004/temp_his?car_id=1';
+const url33 = 'http://158.108.182.5:20004/driver_update';
 
 function send1() {
     console.log("send");
-    fetch(url2,
+    fetch(url33,
         {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -26,7 +24,7 @@ button1.addEventListener("click", (event) => {
 
 function send2() {
     console.log("send");
-    fetch(url2,
+    fetch(url33,
         {
             method: "POST",
             headers: { "Content-Type": "application/json" },
