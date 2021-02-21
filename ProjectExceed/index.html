@@ -433,7 +433,13 @@
             // var div = document.createElement("h1");
             contain.innerHTML = data.result[0]["temp"];
           }else{
-            contain.innerHTML = "การขนส่งล้มเหลว";
+            if(data.result[0]["status"]!=3)
+                    {
+                      contain.innerHTML = "การขนส่งล้มเหลว";
+                    }
+            else{
+                contain.innerHTML = "ยังไม่เริ่มขนส่ง";
+            }
           }
         })
       // var contain = document.getElementById("curr-temp");
