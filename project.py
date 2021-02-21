@@ -61,7 +61,7 @@ car = {}
 
 
 def init():
-    """Get data form collection in database."""
+    """Get data from collection in database."""
     query = myCollection.find()
     for d in query:
         if d['car_id'] not in car:
@@ -91,7 +91,7 @@ def driver_regis():
         'car_id': str,
         'source': str,
         'destination': str,
-        'status': 0/1/2,
+        'status': 3,
         'min_temp': str,
         'max_temp': str
         }
@@ -141,7 +141,7 @@ def driver_update():
 @app.route('/temp_his', methods=['GET'])
 @cross_origin()
 def get_temp_his():
-    """GET temperature history
+    """GET temperature history.
 
     :return
     {
@@ -228,28 +228,6 @@ def find_driver_info():
     return {'result': driver_information}
 
 
-# @app.route('/temp_input', methods=['GET'])
-# @cross_origin()
-# def find_temp_time():
-#     """GET temp and total running time of car_id."""
-#     data = request.args.get('car_id')
-#     query = myCollection.find({'car_id': data})
-#     present_time = datetime.datetime.now()
-#     for d in query:
-#         if d['status'] == 0:
-#             return {'result': {
-#                 'temp': d['temp'],
-#                 'time': 0
-#             }}
-#         if d['status'] == 1:
-#             return {'result': {
-#                 'temp': d['temp'],
-#                 'time': (present_time - d['time_his'][-1]['time']).total_seconds()
-#             }
-#             }
-#     return {'result': 'Error'}
-
-
 @app.route('/time', methods=['GET'])
 @cross_origin()
 def get_running_time():
@@ -276,7 +254,7 @@ def get_running_time():
 @app.route('/status', methods=['GET'])
 @cross_origin()
 def get_status():
-    """GET current status
+    """GET current status.
 
     :return
         {"status": 0/1/2}
@@ -291,7 +269,7 @@ def get_status():
 @app.route('/alert', methods=['GET'])
 @cross_origin()
 def check_temp():
-    """Check if temperature is in threshold
+    """Check if temperature is in threshold.
 
     :return
         {alert: 0/1}
@@ -311,7 +289,7 @@ def check_temp():
 @app.route('/reset', methods=['POST'])
 @cross_origin()
 def reset():
-    """DELETE all data in database"""
+    """DELETE all data in database."""
     myCollection.delete_many({})
     car.clear()
     return {'result': 'Delete Successfully'}
