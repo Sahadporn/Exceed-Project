@@ -448,7 +448,7 @@
 
         // console.log(data.result[0].temp);
 
-        if (data.result[0].status != 2) {
+        if (data.result[0].status == 0 ||  data.result[0].status == 1) {
             setInterval(function () {
 
                 fetch('http://158.108.182.5:20004/driver')
@@ -526,8 +526,13 @@
 
     function loadTemp(data) {
         var contain = document.getElementById("curr-temp");
+        var status = document.getElementById("status");
         // var div = document.createElement("h1");
         contain.innerHTML = data.result[0]["temp"];
+        if(data.result[0]["alert"] == 1)
+        {
+            status.innerHTML = "การขนส่งล้มเหลว";
+        }
     }
 
     function loadData(data) {
@@ -550,18 +555,24 @@
 
         fetch('http://158.108.182.5:20004/alert?car_id=1')
             .then(res => res.json())
-            // .then(alert => console.log(alert))
+            .then(alert => console.log(alert))
             .then(function () {
-                if (alert.alert == 0) {
+                if (alert.alert != 1) {
                     if (data.result[0]["status"] == 0) {
                         status.innerHTML = "หยุดพัก";
                     } else if (data.result[0]["status"] == 1) {
-                        status.innerHTML = "กำลังขนส่ง";
+                        status.innerHTML = "กำลังขนส่ง";}
+                        else if (data.result[0]["status"] == 3) {
+                        status.innerHTML = "ยังไม่เริ่มขนส่งเลย";
                     } else {
                         status.innerHTML = "ขนส่งเสร็จสิ้น";
                     }
                 } else {
-                    status.innerHTML = "การขนส่งล้มเหลว";
+                    if(data.result[0]["status"]!=3)
+                    {
+                        status.innerHTML = "การขนส่งล้มเหลว";
+                    }
+                    
                 }
             });
 
