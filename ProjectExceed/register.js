@@ -14,7 +14,7 @@ function scream(driver_name, car_id, source, destination, min_temp, max_temp) {
       source: source,
       // time_start: time_start,
       destination: destination,
-      status: 1,
+      status: 3,
       // waiting for database
       min_temp: min_temp,
       max_temp: max_temp
