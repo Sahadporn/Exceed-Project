@@ -8,7 +8,7 @@
 
 ## About the Project
 
-![Main page](https://i.ibb.co/QbMkJ3v/demo.jpg)
+![Main page](https://ibb.co/SVFTTLY)
 
 This project is a thermal sensor that sends real time updates of the temperature of a chilled truck's container to the driver via LCD or check it online and the application's homepage.
 
